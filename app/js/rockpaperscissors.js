@@ -57,30 +57,6 @@ function getWinner(playerMove,computerMove) {
         winner = 'player';
 
     return winner;
-
-/*  Working traditional if statement.  Decided to play around with an ordered array instead.
-    if (playerMove === 'rock')
-        if (computerMove === 'scissors')
-            winner = 'player';
-        else if (computerMove === 'paper')
-            winner = 'computer';
-        else
-            winner = 'tie';
-    if (playerMove === 'paper')
-        if (computerMove === 'rock')
-            winner = 'player';
-        else if (computerMove === 'scissors')
-            winner = 'computer';
-        else
-            winner = 'tie';
-    if (playerMove === 'scissors')
-        if (computerMove === 'rock')
-            winner = 'computer';
-        else if (computerMove === 'paper')
-            winner = 'player';
-        else
-            winner = 'tie';
-    */
 }
 
 function playToFive() {
