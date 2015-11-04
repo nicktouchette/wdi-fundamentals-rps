@@ -41,12 +41,12 @@ function getWinner(playerMove,computerMove) {
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
 
-    // Use an ordered array from lesser to greater to determine win.
-    var choices = ['paper','scissors','rock'];
+    // Use a hash with a higher value representing priority
+    var choices = {'paper':1,'scissors':2,'rock':3}
 
     // grabs order of each choice
-    playerMove = choices.indexOf(playerMove);
-    computerMove = choices.indexOf(computerMove);
+    playerMove = choices[playerMove];
+    computerMove = choices[computerMove];
 
     //Player wins if -1 from computer, loss if +1 from computer, win if +2 from computer.
     if (playerMove === computerMove)
