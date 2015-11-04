@@ -40,6 +40,25 @@ function getWinner(playerMove,computerMove) {
     // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
+
+    // Use an ordered array from lesser to greater to determine win.
+    var choices = ['paper','scissors','rock'];
+
+    // grabs order of each choice
+    playerMove = choices.indexOf(playerMove);
+    computerMove = choices.indexOf(computerMove);
+
+    //Player wins if -1 from computer, loss if +1 from computer, win if +2 from computer.
+    if (playerMove === computerMove)
+        winner = 'tie';
+    else if ((playerMove+1 === computerMove) || (playerMove-2 === computerMove))
+        winner = 'computer';
+    else if ((playerMove-1 === computerMove) || (playerMove+2 === computerMove))
+        winner = 'player';
+
+    return winner;
+
+/*  Working traditional if statement.  Decided to play around with an ordered array instead.
     if (playerMove === 'rock')
         if (computerMove === 'scissors')
             winner = 'player';
@@ -61,8 +80,7 @@ function getWinner(playerMove,computerMove) {
             winner = 'player';
         else
             winner = 'tie';
-
-    return winner;
+    */
 }
 
 function playToFive() {
