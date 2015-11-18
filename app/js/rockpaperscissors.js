@@ -25,14 +25,14 @@ function getPlayerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `getInput()`.
-    return move = move || getInput();
+    return move || getInput();
 }
 
 function getComputerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
-    return move = move || randomPlay();
+    return move || randomPlay();
 }
 
 function getWinner(playerMove,computerMove) {
@@ -49,12 +49,26 @@ function getWinner(playerMove,computerMove) {
     computerMove = choices[computerMove];
 
     //Player wins if -1 from computer, loss if +1 from computer, win if +2 from computer.
+    switch (computerMove){
+        case playerMove+1:
+        case playerMove-2:
+            winner='computer';
+            break;
+        case playerMove-1:
+        case playerMove+2:
+            winner='player';
+            break;
+        default:
+            winner='tie';
+    }
+    /*
     if (playerMove === computerMove)
         winner = 'tie';
     else if ((playerMove+1 === computerMove) || (playerMove-2 === computerMove))
         winner = 'computer';
     else if ((playerMove-1 === computerMove) || (playerMove+2 === computerMove))
         winner = 'player';
+    */
 
     return winner;
 }
