@@ -41,34 +41,12 @@ function getWinner(playerMove,computerMove) {
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
 
-    // Use a hash with a higher value representing priority
-    var choices = {'paper':1,'scissors':2,'rock':3}
+    // Associate a losing value with the winning key, win:lose
+    var isDefeat = {'rock':'scissors','scissors':'paper','paper':'rock'}
 
-    // grabs order of each choice
-    playerMove = choices[playerMove];
-    computerMove = choices[computerMove];
-
-    //Player wins if -1 from computer, loss if +1 from computer, win if +2 from computer.
-    switch (computerMove){
-        case playerMove+1:
-        case playerMove-2:
-            winner='computer';
-            break;
-        case playerMove-1:
-        case playerMove+2:
-            winner='player';
-            break;
-        default:
-            winner='tie';
-    }
-    /*
-    if (playerMove === computerMove)
-        winner = 'tie';
-    else if ((playerMove+1 === computerMove) || (playerMove-2 === computerMove))
-        winner = 'computer';
-    else if ((playerMove-1 === computerMove) || (playerMove+2 === computerMove))
-        winner = 'player';
-    */
+    // computer loses if isDefeat[] returns the same value.
+    winner = (computerMove === playerMove)?'tie':
+             (computerMove === isDefeat[playerMove])?'player':'computer';
 
     return winner;
 }
@@ -89,6 +67,7 @@ function playToFive() {
                 break;
         }
     }
+    console.log((playerWins === 5?'Player':'Computer')  + ' Wins playToFive()!');
     return [playerWins, computerWins];
 }
 
