@@ -4,9 +4,10 @@
 'use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
+    console.log("Please choose either 'rock', 'paper', or 'scissors'.");
     return prompt();
 }
+
 function randomPlay() {
     var randomNumber = Math.random();
     if (randomNumber < 0.33) {
@@ -35,39 +36,40 @@ function getComputerMove(move) {
     return move || randomPlay();
 }
 
-function getWinner(playerMove,computerMove) {
-    var winner;
+function getWinner(playerMove, computerMove) {
+    var winner,
+        // Associate a losing value with the winning key, win:lose
+        isDefeat = {
+            'rock': 'scissors',
+            'scissors': 'paper',
+            'paper': 'rock'
+        };
     // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
 
-    // Associate a losing value with the winning key, win:lose
-    var isDefeat = {'rock':'scissors','scissors':'paper','paper':'rock'}
-
     // computer loses if isDefeat[] returns the same value.
-    winner = (computerMove === playerMove)?'tie':
-             (computerMove === isDefeat[playerMove])?'player':'computer';
+    winner = (computerMove === playerMove) ? 'tie' :
+             (computerMove === isDefeat[playerMove]) ? 'player' : 'computer';
 
     return winner;
 }
 
 function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
-    var playerWins = 0;
-    var computerWins = 0;
+    var playerWins = 0, computerWins = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     while (playerWins < 5 && computerWins < 5) {
         //select for player by using randomPlay()
-        switch(getWinner(getPlayerMove(randomPlay()), getComputerMove())) {
-            case 'player':
-                playerWins++;
-                break;
-            case 'computer':
-                computerWins++;
-                break;
+        switch (getWinner(getPlayerMove(randomPlay()), getComputerMove())) {
+        case 'player':
+            playerWins += 1;
+            break;
+        case 'computer':
+            computerWins += 1;
+            break;
         }
     }
-    console.log((playerWins === 5?'Player':'Computer')  + ' Wins playToFive()!');
+    console.log((playerWins === 5 ? 'Player' : 'Computer') + ' Wins playToFive()!');
     return [playerWins, computerWins];
 }
-
